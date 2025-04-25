@@ -1,46 +1,97 @@
+//  FACTORIAL
 
 #include <stdio.h>
 
-void factorial(int n){
+int factorial(int n){
 	int f = 1;
 	for(int i=1; i<=n; i++){
 		f*=i;
 		
 	}
-	printf("%d\n",f);
+    return f; // return result
+	
 }
 
+int main(){
+    int result = factorial(5);
+    printf("%d\n", result);
+     
 
-int simplecalculator(char op, float n1,float n2){
+    int (*p)(int);
+    p = factorial;
+    int result_2 = p(6);
+    printf("%d\n", result_2);
+    return 0;
+    
+
+}
+
+//----------------------------------------------------------------------------------------------
+
+// SIMPLE CALCULATOR
+
+float simplecalculator(char op, float n1,float n2){
     
     
     float result;
     
     switch(op){
         case '+':
-        printf("%f", n1+n2);
+        result = n1+n2;
+        printf("%f\n", result);
+
+       
         break;
         case '-':
-        printf("%f", n1-n2);
+        result = n1-n2;
+        printf("%f\n", result);
         break;
         case '*':
-        printf("%f", n1*n2);
+        result = n1*n2;
+        printf("%f\n", result);
         break;
-        case '/':
-        printf("%f", n1/n2);
-        break;
-    }
+    
     if(n2!=0){
         result = n1/n2;
-        printf("%f",result);
+        printf("%f\n", result);
 
     }else{
         printf("a no cant be divided by 0");
     }
-    return 0;
+
+
+
+    default:
+        printf("invalid\n");
+        return 0;
+    }
     
+        
+
+    return result;
+    }
+   
+   
+
+
+
+int main(){
+    simplecalculator('+',10,5);
+
+    float (*p)(char,float,float);
+
+    p = simplecalculator;
+
+    float result = p('*',3,4);
+    printf("%f\n", result);
+    
+    return 0;
 
 }
+
+//-----------------------------------------------------------------------------------------------------------------------------
+
+// BUBBLESORT
 
 void bubblesort(int arr[], int size) {
     int i, j, temp;
@@ -58,4 +109,14 @@ void bubblesort(int arr[], int size) {
         printf("%d ", arr[i]);
     }
     printf("\n");
+}
+
+int main(){
+    int arr[] = {1,6,4,3,5,2};
+    int size = sizeof(arr) / sizeof(arr[0]); // to calculate the size of the array
+
+    void (*p)(int[], int) = bubblesort;
+
+    p(arr, size);
+    return 0;
 }
